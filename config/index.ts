@@ -53,9 +53,9 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
       },
     },
     h5: {
-      publicPath: '/Campus-Services/', // 适配 Github Pages 的仓库名子路径
+      publicPath: '/', // 恢复为根目录，适配 Vercel 部署
       router: {
-        mode: 'hash', // GitHub Pages 推荐使用 hash 路由以防止刷新 404
+        mode: 'hash', // 保持 hash 路由防止刷新 404
       },
       staticDirectory: 'static',
       output: {
