@@ -1,0 +1,41 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/theme.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-bg-page;
+  padding: 0 32rpx;
+}
+
+.header {
+  padding: 32rpx 0;
+  .title { font-size: 40rpx; font-weight: 600; color: $color-text-primary; }
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 32rpx;
+  background: $color-bg-card;
+  border-radius: 16rpx;
+  padding: 8rpx;
+
+  .tab {
+    flex: 1;
+    text-align: center;
+    padding: 16rpx 0;
+    font-size: 28rpx;
+    color: $color-text-secondary;
+    border-radius: 12rpx;
+    transition: all 0.2s;
+
+    &.active {
+      background: $color-primary;
+      color: $color-white;
+      font-weight: 500;
+    }
+  }
+}
+
+.list {
+  padding-bottom: 48rpx;
+}

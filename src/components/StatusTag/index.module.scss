@@ -1,0 +1,32 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/theme.scss' as *;
+
+.statusTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+  white-space: nowrap;
+
+  &.pending {
+    color: $color-text-secondary;
+    background: $color-bg-active;
+  }
+
+  &.processing {
+    color: $color-warning;
+    background: rgba($color-warning, 0.1);
+  }
+
+  &.completed {
+    color: $color-success;
+    background: rgba($color-success, 0.1);
+  }
+
+  &.evaluated {
+    color: $color-primary;
+    background: rgba($color-primary, 0.1);
+  }
+}

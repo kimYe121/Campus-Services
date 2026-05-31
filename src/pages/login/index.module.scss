@@ -1,0 +1,153 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/theme.scss' as *;
+
+.loginPage {
+  min-height: 100vh;
+  background: $color-bg-card;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -200rpx;
+    right: -200rpx;
+    width: 600rpx;
+    height: 600rpx;
+    background: radial-gradient(circle, rgba($color-primary, 0.1) 0%, rgba($color-primary, 0) 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+}
+
+.header {
+  margin-top: 200rpx;
+  padding: 0 64rpx;
+  position: relative;
+  z-index: 1;
+
+  .logo {
+    width: 120rpx;
+    height: 120rpx;
+    background: $color-primary;
+    border-radius: 32rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 48rpx;
+    box-shadow: 0 16rpx 32rpx rgba($color-primary, 0.2);
+    color: $color-white;
+    font-size: 64rpx;
+    font-weight: bold;
+  }
+
+  .title {
+    font-size: 56rpx;
+    font-weight: 600;
+    color: $color-text-primary;
+    margin-bottom: 16rpx;
+  }
+
+  .subtitle {
+    font-size: 28rpx;
+    color: $color-text-secondary;
+  }
+}
+
+.formBox {
+  margin-top: 80rpx;
+  padding: 0 64rpx;
+  position: relative;
+  z-index: 1;
+
+  .inputGroup {
+    margin-bottom: 48rpx;
+
+    .inputItem {
+      display: flex;
+      align-items: center;
+      border-bottom: 2rpx solid $color-border-light;
+      padding: 24rpx 0;
+      transition: all 0.3s;
+
+      &:focus-within {
+        border-bottom-color: $color-primary;
+      }
+
+      .icon {
+        font-size: 40rpx;
+        color: $color-text-placeholder;
+        margin-right: 24rpx;
+      }
+
+      .input {
+        flex: 1;
+        height: 64rpx;
+        font-size: 32rpx;
+        color: $color-text-primary;
+      }
+
+      .picker {
+        flex: 1;
+        height: 64rpx;
+        font-size: 32rpx;
+        color: $color-text-primary;
+        display: flex;
+        align-items: center;
+      }
+
+      .verifyStatus {
+        font-size: 28rpx;
+        color: $color-success;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8rpx;
+      }
+    }
+  }
+
+  .loginBtn {
+    background: $color-primary;
+    color: $color-white;
+    border-radius: 48rpx;
+    height: 96rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32rpx;
+    font-weight: 500;
+    box-shadow: 0 8rpx 24rpx rgba($color-primary, 0.3);
+    margin-bottom: 32rpx;
+
+    &:active {
+      opacity: 0.9;
+      transform: scale(0.98);
+    }
+  }
+
+  .tips {
+    text-align: center;
+    font-size: 24rpx;
+    color: $color-text-placeholder;
+
+    .link {
+      color: $color-primary;
+      display: inline;
+    }
+  }
+}
+
+.footer {
+  margin-top: auto;
+  padding-bottom: env(safe-area-inset-bottom);
+  text-align: center;
+  
+  .copyright {
+    font-size: 22rpx;
+    color: $color-text-disabled;
+    margin-bottom: 48rpx;
+  }
+}

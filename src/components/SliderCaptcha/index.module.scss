@@ -1,0 +1,168 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/theme.scss' as *;
+
+.captchaOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  &.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .captchaBox {
+    width: 600rpx;
+    background: $color-bg-card;
+    border-radius: 24rpx;
+    padding: 40rpx;
+    box-shadow: 0 16rpx 48rpx rgba(0, 0, 0, 0.2);
+    transform: translateY(40rpx);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    .title {
+      font-size: 32rpx;
+      font-weight: 600;
+      color: $color-text-primary;
+      margin-bottom: 32rpx;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .closeBtn {
+        font-size: 40rpx;
+        color: $color-text-placeholder;
+        padding: 10rpx;
+        line-height: 1;
+        &:active { opacity: 0.7; }
+      }
+    }
+
+    .imageContainer {
+      width: 100%;
+      height: 260rpx;
+      background: $color-bg-active;
+      border-radius: 12rpx;
+      margin-bottom: 32rpx;
+      position: relative;
+      overflow: hidden;
+
+      .bgImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .sliderBlock {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 80rpx;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(4px);
+        border: 2rpx solid $color-white;
+        box-shadow: 0 0 12rpx rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+
+        &::after {
+          content: '|||';
+          color: $color-text-secondary;
+          font-weight: bold;
+          font-size: 20rpx;
+          letter-spacing: 2rpx;
+        }
+      }
+
+      .targetHole {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 80rpx;
+        background: rgba(0, 0, 0, 0.4);
+        box-shadow: inset 0 0 12rpx rgba(0, 0, 0, 0.6);
+        z-index: 1;
+      }
+    }
+
+    .sliderTrack {
+      width: 100%;
+      height: 80rpx;
+      background: $color-bg-active;
+      border-radius: 40rpx;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2rpx solid $color-border;
+      overflow: hidden;
+
+      .tips {
+        font-size: 28rpx;
+        color: $color-text-placeholder;
+        user-select: none;
+      }
+
+      .progressBg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba($color-primary, 0.1);
+        border-radius: 40rpx 0 0 40rpx;
+        border: 2rpx solid $color-primary;
+        border-right: none;
+      }
+
+      .sliderButton {
+        position: absolute;
+        left: 0;
+        top: -2rpx;
+        width: 84rpx;
+        height: 84rpx;
+        background: $color-white;
+        border-radius: 50%;
+        box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-text-secondary;
+        font-size: 32rpx;
+        border: 2rpx solid $color-border;
+        transition: background-color 0.2s;
+        z-index: 3;
+
+        &.active {
+          background: $color-primary;
+          color: $color-white;
+          border-color: $color-primary;
+        }
+
+        &.success {
+          background: $color-success;
+          color: $color-white;
+          border-color: $color-success;
+        }
+
+        &.fail {
+          background: $color-error;
+          color: $color-white;
+          border-color: $color-error;
+        }
+      }
+    }
+  }
+
+  &.show .captchaBox {
+    transform: translateY(0);
+  }
+}

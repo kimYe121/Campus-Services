@@ -1,0 +1,240 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/theme.scss' as *;
+
+/* 使用 MovableArea 作为全屏容器限制拖拽范围 */
+.movableArea {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; // 让背后的页面可点击
+  z-index: 100;
+}
+
+.aiFab {
+  width: 110rpx;
+  height: 110rpx;
+  pointer-events: auto; // 恢复悬浮窗自身的点击
+  animation: float 3s ease-in-out infinite;
+
+  .fabContent {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8rpx 32rpx rgba(59, 130, 246, 0.4);
+    transition: transform 0.2s;
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    .icon {
+      font-size: 56rpx;
+    }
+  }
+
+  .closeFab {
+    position: absolute;
+    top: -10rpx;
+    right: -10rpx;
+    width: 40rpx;
+    height: 40rpx;
+    background: $color-bg-card;
+    color: $color-text-placeholder;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24rpx;
+    box-shadow: 0 4rpx 8rpx rgba(0,0,0,0.1);
+    z-index: 2;
+
+    &:active {
+      color: $color-error;
+    }
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.chatOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  &.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .chatBox {
+    width: 100%;
+    height: 80vh;
+    background: $color-bg-page;
+    border-radius: 32rpx 32rpx 0 0;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.05);
+
+    .header {
+      padding: 32rpx;
+      background: $color-bg-card;
+      border-radius: 32rpx 32rpx 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+      z-index: 2;
+
+      .title {
+        font-size: 32rpx;
+        font-weight: 600;
+        color: $color-text-primary;
+        display: flex;
+        align-items: center;
+        gap: 12rpx;
+      }
+
+      .closeBtn {
+        font-size: 40rpx;
+        color: $color-text-placeholder;
+        padding: 10rpx;
+      }
+    }
+
+    .messageList {
+      flex: 1;
+      padding: 32rpx;
+      overflow-y: auto;
+
+      .msgWrapper {
+        display: flex;
+        margin-bottom: 32rpx;
+
+        &.system {
+          justify-content: flex-start;
+          .avatar { background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); font-size: 32rpx; }
+          .bubble {
+            background: $color-white;
+            color: $color-text-primary;
+            border-bottom-left-radius: 4rpx;
+            box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+          }
+        }
+
+        &.user {
+          justify-content: flex-end;
+          .avatar { background: $color-bg-active; font-size: 32rpx; margin-left: 16rpx; margin-right: 0; }
+          .bubble {
+            background: $color-primary;
+            color: $color-white;
+            border-bottom-right-radius: 4rpx;
+          }
+        }
+
+        .avatar {
+          width: 64rpx;
+          height: 64rpx;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 16rpx;
+          flex-shrink: 0;
+        }
+
+        .bubble {
+          max-width: 70%;
+          padding: 20rpx 24rpx;
+          border-radius: 24rpx;
+          font-size: 28rpx;
+          line-height: 1.5;
+        }
+      }
+
+      .actionCard {
+        margin-top: 16rpx;
+        background: rgba($color-primary, 0.05);
+        border: 2rpx solid rgba($color-primary, 0.2);
+        border-radius: 16rpx;
+        padding: 24rpx;
+
+        .cardTitle {
+          font-size: 28rpx;
+          font-weight: 600;
+          color: $color-primary;
+          margin-bottom: 16rpx;
+        }
+        
+        .cardDesc {
+          font-size: 24rpx;
+          color: $color-text-secondary;
+          margin-bottom: 24rpx;
+        }
+
+        .cardBtn {
+          background: $color-primary;
+          color: $color-white;
+          font-size: 26rpx;
+          padding: 16rpx 0;
+          border-radius: 32rpx;
+          text-align: center;
+        }
+      }
+    }
+
+    .inputArea {
+      padding: 24rpx 32rpx;
+      padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+      background: $color-bg-card;
+      box-shadow: 0 -4rpx 16rpx rgba(0,0,0,0.04);
+      display: flex;
+      align-items: center;
+      gap: 16rpx;
+
+      .input {
+        flex: 1;
+        height: 80rpx;
+        background: $color-bg-page;
+        border-radius: 40rpx;
+        padding: 0 32rpx;
+        font-size: 28rpx;
+      }
+
+      .sendBtn {
+        width: 80rpx;
+        height: 80rpx;
+        background: $color-primary;
+        color: $color-white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36rpx;
+
+        &:active { transform: scale(0.95); }
+        &.disabled { background: $color-bg-active; color: $color-text-disabled; }
+      }
+    }
+  }
+
+  &.show .chatBox {
+    transform: translateY(0);
+  }
+}

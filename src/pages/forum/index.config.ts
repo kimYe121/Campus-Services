@@ -1,0 +1,1 @@
+export default { navigationBarTitleText: '百事圈' }

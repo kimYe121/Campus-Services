@@ -1,0 +1,287 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/theme.scss' as *;
+
+.homePage {
+  min-height: 100vh;
+  background: $color-bg-page;
+  padding: 0 32rpx;
+  padding-bottom: 48rpx;
+}
+
+.header {
+  padding: 32rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .title {
+    font-size: 40rpx;
+    font-weight: 600;
+    color: $color-primary;
+  }
+
+  .subtitle {
+    font-size: 24rpx;
+    color: $color-text-secondary;
+    margin-top: 8rpx;
+  }
+
+  .weatherWidget {
+    text-align: right;
+    .temp {
+      font-size: 36rpx;
+      font-weight: bold;
+      color: $color-text-primary;
+    }
+    .desc {
+      font-size: 22rpx;
+      color: $color-text-secondary;
+    }
+  }
+}
+
+.banner {
+  width: 100%;
+  height: 320rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  margin-bottom: 40rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  transform: translateY(0); // 解决某些情况下的圆角失效问题
+
+  .bannerImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 16rpx;
+  }
+}
+
+.aiSearchBox {
+  background: $color-bg-card;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 40rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6rpx;
+    background: linear-gradient(90deg, #3B82F6, #8B5CF6, #EC4899);
+  }
+
+  .aiTitle {
+    font-size: 32rpx;
+    font-weight: 600;
+    color: $color-text-primary;
+    margin-bottom: 24rpx;
+    display: flex;
+    align-items: center;
+    gap: 12rpx;
+
+    .aiIcon {
+      font-size: 36rpx;
+    }
+  }
+
+  .inputWrapper {
+    background: $color-bg-page;
+    border-radius: 16rpx;
+    padding: 24rpx;
+    display: flex;
+    align-items: center;
+
+    .aiInput {
+      flex: 1;
+      font-size: 28rpx;
+      color: $color-text-primary;
+    }
+
+    .sendBtn {
+      background: $color-primary;
+      color: $color-white;
+      width: 64rpx;
+      height: 64rpx;
+      border-radius: 12rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32rpx;
+      margin-left: 16rpx;
+      box-shadow: 0 4rpx 12rpx rgba($color-primary, 0.3);
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  .suggestList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16rpx;
+    margin-top: 24rpx;
+
+    .suggestItem {
+      font-size: 24rpx;
+      color: $color-text-secondary;
+      background: rgba($color-primary, 0.05);
+      padding: 8rpx 20rpx;
+      border-radius: 32rpx;
+      border: 1rpx solid rgba($color-primary, 0.1);
+    }
+  }
+
+  /* AI 识别结果卡片 */
+  .aiResultCard {
+    margin-top: 32rpx;
+    background: rgba($color-primary, 0.05);
+    border: 2rpx solid rgba($color-primary, 0.2);
+    border-radius: 16rpx;
+    padding: 24rpx;
+
+    .resultHeader {
+      font-size: 28rpx;
+      font-weight: 600;
+      color: $color-primary;
+      margin-bottom: 16rpx;
+      display: flex;
+      align-items: center;
+      gap: 12rpx;
+    }
+
+    .resultRow {
+      display: flex;
+      font-size: 26rpx;
+      margin-bottom: 12rpx;
+
+      .label {
+        color: $color-text-secondary;
+        width: 140rpx;
+      }
+      .value {
+        color: $color-text-primary;
+        font-weight: 500;
+        flex: 1;
+
+        &.urgent { color: $color-error; }
+        &.missing { color: $color-warning; }
+      }
+    }
+
+    .quickSubmitBtn {
+      margin-top: 24rpx;
+      background: $color-primary;
+      color: $color-white;
+      font-size: 28rpx;
+      height: 72rpx;
+      border-radius: 36rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4rpx 12rpx rgba($color-primary, 0.2);
+    }
+  }
+}
+
+.section {
+  margin-bottom: 40rpx;
+
+  .sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24rpx;
+
+    .sectionTitle {
+      font-size: 34rpx;
+      font-weight: 600;
+      color: $color-text-primary;
+    }
+
+    .more {
+      font-size: 24rpx;
+      color: $color-text-placeholder;
+    }
+  }
+
+  .recentScroll {
+    width: 100%;
+    white-space: nowrap;
+    
+    .recentItem {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 160rpx;
+      height: 160rpx;
+      background: $color-bg-card;
+      border-radius: 16rpx;
+      margin-right: 24rpx;
+      box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+      transition: all 0.2s;
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .icon {
+        font-size: 48rpx;
+        margin-bottom: 12rpx;
+      }
+
+      .name {
+        font-size: 24rpx;
+        font-weight: 500;
+        color: $color-text-primary;
+      }
+    }
+  }
+
+  .taskCard {
+    background: $color-bg-card;
+    border-radius: 16rpx;
+    padding: 32rpx;
+    box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .taskInfo {
+      flex: 1;
+
+      .taskTitle {
+        font-size: 30rpx;
+        font-weight: 500;
+        color: $color-text-primary;
+        margin-bottom: 8rpx;
+        @include text-ellipsis;
+      }
+
+      .taskDesc {
+        font-size: 24rpx;
+        color: $color-text-secondary;
+      }
+    }
+
+    .taskStatus {
+      font-size: 24rpx;
+      font-weight: 500;
+      color: $color-warning;
+      background: rgba($color-warning, 0.1);
+      padding: 8rpx 16rpx;
+      border-radius: 8rpx;
+    }
+  }
+}
+

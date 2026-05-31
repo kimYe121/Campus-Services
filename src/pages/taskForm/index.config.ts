@@ -1,0 +1,1 @@
+export default { navigationBarTitleText: '发起事项' }

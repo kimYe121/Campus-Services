@@ -1,0 +1,112 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/theme.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-bg-page;
+}
+
+.headerBg {
+  background: $color-primary;
+  padding: 64rpx 32rpx 48rpx;
+  border-radius: 0 0 32rpx 32rpx;
+  color: $color-white;
+  margin-bottom: 32rpx;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+
+  .avatar {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    background: $color-white;
+    margin-right: 32rpx;
+    border: 4rpx solid rgba($color-white, 0.3);
+  }
+
+  .info {
+    flex: 1;
+    .name {
+      font-size: 40rpx;
+      font-weight: 600;
+      margin-bottom: 8rpx;
+      display: flex;
+      align-items: center;
+
+      .roleTag {
+        font-size: 20rpx;
+        background: rgba($color-white, 0.2);
+        padding: 4rpx 12rpx;
+        border-radius: 8rpx;
+        margin-left: 16rpx;
+        font-weight: normal;
+      }
+    }
+    .id {
+      font-size: 28rpx;
+      opacity: 0.8;
+    }
+  }
+}
+
+.menuList {
+  padding: 0 32rpx 48rpx;
+
+  .menuGroup {
+    background: $color-bg-card;
+    border-radius: 16rpx;
+    margin-bottom: 24rpx;
+    overflow: hidden;
+    box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+
+    .menuItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 32rpx;
+      border-bottom: 1rpx solid $color-border-light;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:active {
+        background: $color-bg-active;
+      }
+
+      .menuLabel {
+        font-size: 30rpx;
+        color: $color-text-primary;
+        display: flex;
+        align-items: center;
+        
+        .icon {
+          margin-right: 16rpx;
+          font-size: 36rpx;
+        }
+      }
+
+      .menuArrow {
+        color: $color-text-placeholder;
+      }
+    }
+  }
+}
+
+.roleSwitch {
+  margin: 0 32rpx;
+  padding: 24rpx;
+  background: rgba($color-warning, 0.1);
+  color: $color-warning;
+  text-align: center;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  
+  &:active {
+    opacity: 0.8;
+  }
+}

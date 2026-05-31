@@ -1,0 +1,64 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/theme.scss' as *;
+
+.taskCard {
+  background: $color-bg-card;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  margin-bottom: 24rpx;
+  transition: all 0.2s;
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16rpx;
+
+    .typeTag {
+      font-size: 22rpx;
+      color: $color-text-secondary;
+      background: $color-bg-active;
+      padding: 4rpx 12rpx;
+      border-radius: 4rpx;
+    }
+  }
+
+  .title {
+    font-size: 32rpx;
+    font-weight: 600;
+    color: $color-text-primary;
+    margin-bottom: 12rpx;
+    @include text-ellipsis;
+  }
+
+  .desc {
+    font-size: 26rpx;
+    color: $color-text-secondary;
+    margin-bottom: 24rpx;
+    @include text-ellipsis-multi(2);
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1rpx solid $color-border-light;
+    padding-top: 24rpx;
+
+    .time {
+      font-size: 24rpx;
+      color: $color-text-placeholder;
+    }
+
+    .id {
+      font-size: 24rpx;
+      color: $color-text-placeholder;
+      font-family: monospace;
+    }
+  }
+}

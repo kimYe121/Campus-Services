@@ -1,0 +1,206 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/theme.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-bg-page;
+  padding: 32rpx;
+  padding-bottom: 120rpx;
+}
+
+/* AI 进度摘要卡 */
+.aiProgressCard {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  border: 2rpx solid rgba($color-primary, 0.2);
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+
+  .aiHeader {
+    display: flex;
+    align-items: center;
+    gap: 12rpx;
+    margin-bottom: 16rpx;
+    font-size: 28rpx;
+    font-weight: 600;
+    color: $color-primary;
+  }
+
+  .aiContent {
+    background: $color-white;
+    padding: 16rpx;
+    border-radius: 12rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.02);
+
+    .aiRow {
+      font-size: 26rpx;
+      color: $color-text-secondary;
+      margin-bottom: 12rpx;
+      display: flex;
+
+      &:last-child { margin-bottom: 0; }
+
+      .label {
+        color: $color-text-placeholder;
+        width: 140rpx;
+      }
+      .value {
+        color: $color-text-primary;
+        flex: 1;
+        &.highlight { color: $color-primary; font-weight: 500; }
+        &.warning { color: $color-warning; font-weight: 500; }
+      }
+    }
+  }
+}
+
+.detailCard {
+  background: $color-bg-card;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+  margin-bottom: 32rpx;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24rpx;
+
+    .typeTag {
+      font-size: 24rpx;
+      color: $color-text-secondary;
+      background: $color-bg-active;
+      padding: 6rpx 16rpx;
+      border-radius: 8rpx;
+    }
+  }
+
+  .title {
+    font-size: 36rpx;
+    font-weight: 600;
+    color: $color-text-primary;
+    margin-bottom: 16rpx;
+  }
+
+  .info {
+    font-size: 26rpx;
+    color: $color-text-secondary;
+    margin-bottom: 32rpx;
+    line-height: 1.6;
+  }
+
+  .idTime {
+    font-size: 24rpx;
+    color: $color-text-placeholder;
+    border-top: 1rpx solid $color-border-light;
+    padding-top: 24rpx;
+  }
+}
+
+.timeline {
+  background: $color-bg-card;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+
+  .sectionTitle {
+    font-size: 32rpx;
+    font-weight: 600;
+    margin-bottom: 32rpx;
+  }
+
+  .timelineItem {
+    position: relative;
+    padding-left: 48rpx;
+    padding-bottom: 48rpx;
+
+    &:last-child {
+      padding-bottom: 0;
+      &::before { display: none; }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 12rpx;
+      top: 32rpx;
+      bottom: -8rpx;
+      width: 2rpx;
+      background: $color-border;
+    }
+
+    .dot {
+      position: absolute;
+      left: 0;
+      top: 8rpx;
+      width: 24rpx;
+      height: 24rpx;
+      border-radius: 50%;
+      background: $color-border;
+      border: 4rpx solid $color-white;
+
+      &.active {
+        background: $color-primary;
+        box-shadow: 0 0 0 4rpx rgba($color-primary, 0.2);
+      }
+    }
+
+    .content {
+      .itemTitle {
+        font-size: 28rpx;
+        font-weight: 500;
+        color: $color-text-primary;
+        margin-bottom: 8rpx;
+      }
+      .itemDesc {
+        font-size: 24rpx;
+        color: $color-text-secondary;
+        margin-bottom: 8rpx;
+      }
+      .itemTime {
+        font-size: 22rpx;
+        color: $color-text-placeholder;
+      }
+    }
+  }
+}
+
+.actionFooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $color-bg-card;
+  padding: 24rpx 32rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  box-shadow: 0 -4rpx 16rpx rgba(0,0,0,0.04);
+  display: flex;
+  gap: 24rpx;
+
+  .btn {
+    flex: 1;
+    height: 80rpx;
+    border-radius: 40rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+    font-weight: 500;
+    
+    &.cancel {
+      background: $color-bg-page;
+      color: $color-text-secondary;
+    }
+
+    &.primary {
+      background: $color-primary;
+      color: $color-white;
+    }
+    
+    &.urgent {
+      background: $color-error;
+      color: $color-white;
+    }
+  }
+}
